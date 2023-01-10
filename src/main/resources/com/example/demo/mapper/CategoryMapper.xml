@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.CategoryMapper" >
+    <select id="getAllCategory" resultMap="categoryMap">
+        select * from category
+    </select>
+    <insert id="insertCategory" parameterType="com.example.demo.model.Category">
+        insert into category set cate_name = #{cateName}, date = #{date}
+    </insert>
+    <update id="updateCategory">
+        update category set cate_name = #{cateName}, date = #{date} where id = #{id}
+    </update>
+    <delete id="deleteCategoryByIds">
+        delete from category where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <resultMap id="categoryMap" type="com.example.demo.model.Category">
+        <id column="id" property="id" />
+        <result column="cate_name" property="cateName" />
+        <result column="date" property="date" />
+    </resultMap>
+</mapper>

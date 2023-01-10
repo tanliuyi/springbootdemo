@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    name: demo
+    url: jdbc:mysql://localhost:3306/db
+    username: root
+    password: root123
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      filters: stat
+      max-active: 20
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone=GMT+8:
+
+
+mybatis:
+  mapper-locations: classpath:com/example/demo/mapper/*Mapper.xml
+  type-aliases-package: com.example.demo.model

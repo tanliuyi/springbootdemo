@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.ArticleMapper" >
+    <insert id="insertArticle" parameterType="com.example.demo.model.Article" useGeneratedKeys="true" keyProperty="id">
+        insert into
+          articles
+        set
+          title = #{title}, md_content = #{mdContent}, html_content = #{htmlContent},
+          summary = #{summary}, cate_name=#{cateName}, publish_date = #{publishDate}, edit_time = #{editTime}
+    </insert>
+
+    <update id="updateArticle" parameterType="com.example.demo.model.Article">
+      update articles set title=#{title},md_content=#{mdContent},html_content=#{htmlContent},summary=#{summary} where id=#{id}
+    </update>
+
+    <delete id="deleteArticleByIds">
+        delete from articles where id in 
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findAllArticles" resultMap="articleMap">
+      select * from articles
+    </select>
+
+    <resultMap id="articleMap" type="com.example.demo.model.Article">
+        <id column="id" property="id" />
+        <result property="title" column="title" />
+        <result property="htmlContent" column="html_content" />
+        <result property="mdContent" column="md_content" />
+        <result property="summary" column="summary" />
+        <result property="cateName" column="cate_name" />
+        <result property="publishDate" column="publish_date" />
+        <result property="editTime" column="edit_time" />
+    </resultMap>
+
+
+</mapper>

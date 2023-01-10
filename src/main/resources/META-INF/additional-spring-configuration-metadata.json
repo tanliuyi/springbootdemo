@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.jackson.time-zone=GMT+8",
+      "type": "java.lang.String",
+      "description": "Description for spring.jackson.time-zone=GMT+8."
+  }
+] }
